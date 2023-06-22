@@ -9,7 +9,7 @@ import string
 nltk.download('stopwords')
 
 # File path of the dataset CSV file
-dataset_file = "C:/Users/LEGION 5 PRO/OneDrive/Documents/Semester 4/Temu Kembali Informasi/dataset 14/sentiment labelled sentences/preprocessed_dataset.csv"
+dataset_file = "C:/Users/LEGION 5 PRO/OneDrive/Documents/Semester 4/Temu Kembali Informasi/dataset 14/sentiment labelled sentences/datasets.csv"
 
 # Define stopwords
 stop_words = set(stopwords.words('english'))
@@ -24,11 +24,12 @@ def remove_punctuation(text):
     return text
 
 def preprocess_text(text):
-    # Remove punctuation
+    # Remove punctuation and dots
     text = remove_punctuation(text)
+    text = text.replace('.', '')
 
     # Replace "1", "0", ",0,,,", and ",1,,,," with whitespace
-    text = re.sub(r'lb[01]lb', ' ', text)
+    text = re.sub(r'\b[01]\b', ' ', text)
     text = re.sub(r',0,,,,,', ' ', text)
     text = re.sub(r',1,,,,,', ' ', text)
     
